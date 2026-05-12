@@ -209,6 +209,65 @@ document.addEventListener('DOMContentLoaded', () => {
         activeBg.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
     });
 
+    // 7. 移动端菜单开关逻辑
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const navItemsArray = document.querySelectorAll('.nav-item');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('open');
+        navLinks.classList.toggle('open');
+    });
+
+    // 点击菜单项后自动关闭菜单
+    navItemsArray.forEach(item => {
+        item.addEventListener('click', () => {
+            if (navLinks.classList.contains('open')) {
+                mobileMenuBtn.classList.remove('open');
+                navLinks.classList.remove('open');
+            }
+        });
+    });
+
+    // 8. 手机端触摸滑动切屏 (Swipe)
+    let touchStartY = 0;
+    let touchEndY = 0;
+    const swipeThreshold = 50; // 触发滑动的最小距离
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const deltaY = touchEndY - touchStartY;
+        // 获取当前激活的导航项索引
+        const currentActiveItem = document.querySelector('.nav-item.active');
+        if (!currentActiveItem) return;
+        
+        // 将 NodeList 转为数组以获取索引
+        const itemsArray = Array.from(navItems);
+        const currentIndex = itemsArray.indexOf(currentActiveItem);
+
+        if (Math.abs(deltaY) > swipeThreshold) {
+            if (deltaY < 0) {
+                // 向上滑（手指往上拉），看下一页
+                if (currentIndex < itemsArray.length - 1) {
+                    itemsArray[currentIndex + 1].click();
+                }
+            } else {
+                // 向下滑（手指往下拉），看上一页
+                if (currentIndex > 0) {
+                    itemsArray[currentIndex - 1].click();
+                }
+            }
+        }
+    }
+
     window.addEventListener('resize', () => {
         const currentActive = document.querySelector('.nav-item.active');
         if (currentActive) {
