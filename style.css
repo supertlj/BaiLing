@@ -705,14 +705,20 @@ body {
     
     .content-container {
         padding-left: 0;
-        justify-content: center;
-        align-items: flex-end;
-        padding-bottom: 50px;
+        padding-bottom: 0;
     }
     
     .page-section {
         max-width: 100%;
-        padding-left: 5%;
+        padding-left: 0;
+        justify-content: center; /* 手机端内容居中 */
+        align-items: center;
+    }
+    
+    .glass-card {
+        max-width: 90% !important; /* 限制宽度，防止超出 */
+        margin: 0 auto;
+        padding: 30px 20px; /* 适当缩小内边距 */
     }
     
     .features-grid {
