@@ -22,12 +22,11 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd otomate-react
           npm install
           npm run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: otomate-react/dist
+          folder: dist
           branch: gh-pages
