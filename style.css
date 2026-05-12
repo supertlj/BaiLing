@@ -248,36 +248,23 @@ body {
     overflow: hidden;
 }
 
-/* 入场微动效 (Stagger Animation) */
-/* 用 keyframes 实现，避免与 glass-card 的 transition/animation 冲突 */
+/* 入场微动效 (Stagger Animation) - 改为最稳妥的 transition */
 .stagger-item {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .page-section.active .stagger-item {
-    animation: stagger-in 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* 不同子元素的入场延迟 */
-.page-section.active .stagger-item:nth-child(3) { animation-delay: 0.15s; }
-.page-section.active .stagger-item:nth-child(4) { animation-delay: 0.3s; }
-
-/* 角色页内的子 stagger 延迟 */
-.page-section.active .char-profile-container .stagger-item:nth-child(1) { animation-delay: 0.1s; }
-.page-section.active .char-profile-container .stagger-item:nth-child(2) { animation-delay: 0.3s; }
-.page-section.active .char-profile-container .stagger-item:nth-child(3) { animation-delay: 0.5s; }
-
-@keyframes stagger-in {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* 默认延迟，可以通过内联样式覆盖 */
+.stagger-item:nth-child(1) { transition-delay: 0.1s; }
+.stagger-item:nth-child(2) { transition-delay: 0.2s; }
+.stagger-item:nth-child(3) { transition-delay: 0.3s; }
+.stagger-item:nth-child(4) { transition-delay: 0.4s; }
 
 /* 毛玻璃卡片通用样式 */
 .glass-card {
@@ -293,11 +280,6 @@ body {
     transition: border-color 0.3s ease;
     z-index: 1;
 }
-
-/* 只有在板块激活且入场动画结束后才启用浮动 */
-.page-section.active .glass-card.stagger-item {
-    animation: stagger-in 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards,
-               floating 6s ease-in-out 0.8s infinite;
 }
 
 .glass-card:hover {

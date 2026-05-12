@@ -48,17 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloader = document.querySelector('.preloader');
     setTimeout(() => {
         preloader.classList.add('fade-out');
-        
-        // 强制触发第一屏的 stagger 动画（解决首屏不显示问题）
-        const activeSection = document.querySelector('.page-section.active');
-        if (activeSection) {
-            const staggerItems = activeSection.querySelectorAll('.stagger-item');
-            staggerItems.forEach(el => {
-                el.style.animation = 'none';
-                el.offsetHeight; // 强制回流
-                el.style.animation = '';
-            });
-        }
     }, 2500);
 
     // 2. 动态粒子生成 (为每个板块生成)
@@ -152,13 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
             sections.forEach(sec => {
                 sec.classList.remove('active');
                 if (sec.id === targetSectionId) {
-                    // 重置 stagger 动画，确保每次切换都能重新播放
-                    const staggerItems = sec.querySelectorAll('.stagger-item');
-                    staggerItems.forEach(el => {
-                        el.style.animation = 'none';
-                        el.offsetHeight; // 强制回流，让浏览器重置动画状态
-                        el.style.animation = '';
-                    });
                     sec.classList.add('active');
                 }
             });
