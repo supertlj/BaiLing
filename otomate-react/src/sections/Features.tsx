@@ -17,7 +17,7 @@ export const Features = ({ isActive }: FeaturesProps) => {
 
     return (
         <section id="section-features" className={`page-section ${isActive ? 'active' : ''}`}>
-            <div className="section-bg" style={{ backgroundImage: "url('/bg_homepage_book.png')", opacity: 0.5 }}></div>
+            <div className="section-bg" style={{ backgroundImage: "url('bg_homepage_book.png')", opacity: 0.5 }}></div>
             <div className="bg-overlay"></div>
             
             <div className="features-container">

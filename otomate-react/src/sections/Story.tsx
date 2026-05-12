@@ -9,7 +9,7 @@ interface StoryProps {
 export const Story = ({ isActive, onNavigate }: StoryProps) => {
     return (
         <section id="section-story" className={`page-section ${isActive ? 'active' : ''}`}>
-            <div className="section-bg" style={{ backgroundImage: "url('/gallery_rain_umbrella.png')" }}></div>
+            <div className="section-bg" style={{ backgroundImage: "url('gallery_rain_umbrella.png')" }}></div>
             <div className="bg-overlay"></div>
             
             <GlassCard className="story-card">

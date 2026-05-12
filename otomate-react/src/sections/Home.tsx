@@ -9,7 +9,7 @@ interface HomeProps {
 export const Home = ({ isActive, onNavigate }: HomeProps) => {
     return (
         <section id="section-home" className={`page-section ${isActive ? 'active' : ''}`}>
-            <div className="section-bg" style={{ backgroundImage: "url('/bg_homepage_book.png')" }}></div>
+            <div className="section-bg" style={{ backgroundImage: "url('bg_homepage_book.png')" }}></div>
             <div className="bg-overlay"></div>
             
             <GlassCard className="welcome-card">

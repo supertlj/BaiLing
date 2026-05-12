@@ -7,13 +7,13 @@ interface GalleryProps {
 }
 
 export const Gallery = ({ isActive }: GalleryProps) => {
-    const [activeBg, setActiveBg] = useState('/gallery_rain_umbrella.png');
+    const [activeBg, setActiveBg] = useState('gallery_rain_umbrella.png');
 
     const galleryItems = [
-        { bg: '/gallery_rain_umbrella.png', label: '雨夜誓言' },
-        { bg: '/character_suiyan_wide.png', label: '岁衍特写' },
-        { bg: '/character_xielvheng_wide.png', label: '律令之界' },
-        { bg: '/character_yexiao_wide.png', label: '狂傲一瞬' },
+        { bg: 'gallery_rain_umbrella.png', label: '雨夜誓言' },
+        { bg: 'character_suiyan_wide.png', label: '岁衍特写' },
+        { bg: 'character_xielvheng_wide.png', label: '律令之界' },
+        { bg: 'character_yexiao_wide.png', label: '狂傲一瞬' },
     ];
 
     return (
