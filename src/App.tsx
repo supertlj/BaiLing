@@ -13,7 +13,6 @@ const sections = ['home', 'story', 'characters', 'features', 'gallery'];
 function App() {
     const [activeSection, setActiveSection] = useState('home');
     const [isScrolling, setIsScrolling] = useState(false);
-    const scrollTimeout = useRef<number | null>(null);
     const touchStartY = useRef(0);
 
     const activeIndex = sections.indexOf(activeSection);
