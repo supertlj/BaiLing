@@ -664,11 +664,8 @@ body {
         font-size: 36px;
     }
     
-    /* 手机端防溢出：限制最大高度并允许框内滚动 */
     .char-profile-container {
         width: 90%;
-        max-height: 80vh;
-        overflow-y: auto;
         padding: 20px;
         background: rgba(11, 12, 16, 0.6);
         border-radius: 15px;
