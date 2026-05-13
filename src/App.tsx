@@ -34,18 +34,11 @@ function App() {
             if (nextIndex >= 0 && nextIndex < sections.length) {
                 setIsScrolling(true);
                 setActiveSection(sections[nextIndex]);
-                
-                scrollTimeout.current = window.setTimeout(() => {
-                    setIsScrolling(false);
-                }, 1000); // 1秒内防止连续触发
             }
         };
 
         window.addEventListener('wheel', handleWheel, { passive: true });
-        return () => {
-            window.removeEventListener('wheel', handleWheel);
-            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-        };
+        return () => window.removeEventListener('wheel', handleWheel);
     }, [activeSection, isScrolling]);
 
     // 触摸事件处理 (移动端手势)
@@ -68,10 +61,6 @@ function App() {
                 if (nextIndex >= 0 && nextIndex < sections.length) {
                     setIsScrolling(true);
                     setActiveSection(sections[nextIndex]);
-                    
-                    scrollTimeout.current = window.setTimeout(() => {
-                        setIsScrolling(false);
-                    }, 1000);
                 }
             }
         };
@@ -93,6 +82,7 @@ function App() {
                 className="content-container"
                 animate={{ translateY: `-${activeIndex * 100}vh` }}
                 transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                onAnimationComplete={() => setIsScrolling(false)}
                 style={{ height: `${sections.length * 100}vh` }}
             >
                 <Home isActive={activeSection === 'home'} onNavigate={handleSectionChange} />
